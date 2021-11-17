@@ -2,23 +2,27 @@ import 'package:flutter/material.dart';
 import '../screens/category_trips_screen.dart';
 
 class CategoryItem extends StatelessWidget {
+  final String id;
   final String title;
   final String imageUrl;
 
-  CategoryItem(this.title, this.imageUrl);
+  CategoryItem(this.id, this.title, this.imageUrl);
 
   void selectCategory(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(
-        builder: (c) => CategoryTripsScreen(),
-      ),
+    Navigator.of(ctx).pushNamed(
+     CategoryTripsScreen.screenRoute,
+      arguments: {
+        'id': id,
+        'title': title,
+        
+      }
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap:() => selectCategory (context),
+      onTap: () => selectCategory(context),
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(15),
       child: Stack(

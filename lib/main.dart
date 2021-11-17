@@ -2,13 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:untitled/screens/categories_screen.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:untitled/screens/category_trips_screen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  get categoryId => null;
+
+  get categoryTitle => null;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,7 +45,12 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'Kalam',
                 fontWeight: FontWeight.bold,
               ))),
-      home: categoriesScreen(),
+      // home: categoriesScreen(),
+      routes: {
+        '/': (ctx) => categoriesScreen(), //kikhdem fhal home!!
+        CategoryTripsScreen.screenRoute: (ctx) =>
+            CategoryTripsScreen(categoryId, categoryTitle)
+      },
     );
   }
 }
