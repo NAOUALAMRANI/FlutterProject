@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../app_data.dart';
 
 class CategoryTripsScreen extends StatelessWidget {
   static const screenRoute = '/category-trips';
@@ -15,12 +16,20 @@ class CategoryTripsScreen extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final categoryId = routeArgument['id'];
     final categoryTitle = routeArgument['title'];
+    final 
     return Scaffold(
         appBar: AppBar(
           title: Text(categoryTitle!),
         ),
-        body: const Center(
-          child: Text('List of trips for this category'),
-        ));
+        body:  ListView.builder(
+          itemBuilder: (ctx,index) {
+            return Text(filterdTrips[index].title);
+          },
+          itemCount: filterdTrips.length,
+
+        ) 
+        /*   const Center(
+           child: Text('List of trips for this category'),
+        )*/);
   }
 }
