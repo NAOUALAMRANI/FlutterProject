@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'package:flutter/material.dart';
 
 enum Season {
@@ -26,22 +27,19 @@ class Trip {
   final TripType tripType;
   final bool isInSummer;
   final bool isInWinter;
-  final bool isForfamili;
+  final bool isForFamilies;
 
-  const Trip({
-    required this.id,
-    required this.categories,
-    required this.title,
-    required this.imageUrl,
-    required this.activities,
-    required this.program,
-    required this.duration,
-    required this.season,
-    required this.tripType,
-    required this.isInSummer,
-    required this.isInWinter,
-    required this.isForfamili, required bool isForFamilies
-  }
-  );
-
+  const Trip(
+      {required this.id,
+      required this.categories,
+      required this.title,
+      required this.imageUrl,
+      required this.activities,
+      required this.program,
+      required this.duration,
+      required this.season,
+      required this.tripType,
+      required this.isInSummer,
+      required this.isInWinter,
+      required this.isForFamilies});
 }
