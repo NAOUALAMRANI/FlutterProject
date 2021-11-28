@@ -17,6 +17,8 @@ class TripItem extends StatelessWidget {
     required this.season,
   });
 
+  
+
   void selectTrip() {}
 
   @override
@@ -28,13 +30,13 @@ class TripItem extends StatelessWidget {
           borderRadius:BorderRadius.circular(15)
            ),
            elevation: 7,
-           margin:EdgeInsets.all(10) ,
+           margin:const EdgeInsets.all(10) ,
            child:Column(
              children: [
                Stack(
                  children: [
                    ClipRRect(
-                     borderRadius:BorderRadius.only(
+                     borderRadius:const BorderRadius.only(
                        topLeft: Radius.circular(15),
                        topRight:  Radius.circular(15)
                      ),
@@ -47,7 +49,7 @@ class TripItem extends StatelessWidget {
                     Container(
                       height: 250,
                       alignment:Alignment.bottomLeft ,
-                      padding:EdgeInsets.symmetric(
+                      padding:const EdgeInsets.symmetric(
                         vertical: 10,
                         horizontal: 20
                       ),
@@ -59,7 +61,7 @@ class TripItem extends StatelessWidget {
                             Colors.black.withOpacity(0),
                             Colors.black.withOpacity(0.8),
                           ],
-                          stops: [ 0.6, 1],
+                          stops: const [ 0.6, 1],
                         ),
                       ),
                       child: Text(
