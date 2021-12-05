@@ -1,14 +1,15 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:untitled/screens/categories_screen.dart';
 import 'package:untitled/screens/category_trips_screen.dart';
+import './screens/trip_detail_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   get categoryId => null;
 
   get categoryTitle => null;
@@ -30,16 +31,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           // ignore: deprecated_member_use
-          accentColor: Colors.amber,
+          accentColor: Colors.blue,
           fontFamily: 'Kalam',
           textTheme: ThemeData.light().textTheme.copyWith(
-              headline5: TextStyle(
-                color: Colors.blue,
+              headline5: const TextStyle(
+                color: Colors.cyanAccent,
                 fontSize: 24,
                 fontFamily: 'Kalam',
                 fontWeight: FontWeight.bold,
               ),
-              headline6: TextStyle(
+              headline6: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,
                 fontFamily: 'Kalam',
@@ -47,9 +48,9 @@ class MyApp extends StatelessWidget {
               ))),
       // home: categoriesScreen(),
       routes: {
-        '/': (ctx) => categoriesScreen(), //kikhdem fhal home!!
-        CategoryTripsScreen.screenRoute: (ctx) =>
-            CategoryTripsScreen(categoryId, categoryTitle)
+        '/': (ctx) => const categoriesScreen(), //kikhdem fhal home!!
+        CategoryTripsScreen.screenRoute: (ctx) => CategoryTripsScreen(categoryId, categoryTitle),
+        TripDetailScreen.screenRoute: (ctx) => TripDetailScreen()
       },
     );
   }

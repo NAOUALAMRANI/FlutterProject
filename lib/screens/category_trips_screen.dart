@@ -28,6 +28,7 @@ class CategoryTripsScreen extends StatelessWidget {
           itemBuilder: (ctx, index) {
             //return Text(filterdTrips[index].title); kant ghir n title
             return TripItem(
+                id: filteredTrips[index].id,
                 title: filteredTrips[index].title,
                 imageUrl: filteredTrips[index].imageUrl,
                 duration: filteredTrips[index].duration,

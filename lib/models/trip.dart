@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 enum Season {
+  // ignore: constant_identifier_names
   Winter,
   Spring,
   Summer,
