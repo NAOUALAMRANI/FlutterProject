@@ -8,11 +8,7 @@ class categoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Travels'),
-      ),
-      body: GridView(
+    return GridView(
         padding: const EdgeInsets.all(10),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 200,
@@ -23,7 +19,7 @@ class categoriesScreen extends StatelessWidget {
         // ignore: non_constant_identifier_names
         children: Categories_data.map((CategoryData) =>
             CategoryItem(CategoryData.id, CategoryData.title, CategoryData.imageUrl)).toList(),
-      ),
-    );
+      );
+    ;
   }
 }

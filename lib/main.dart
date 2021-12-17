@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/screens/categories_screen.dart';
-import 'package:untitled/screens/category_trips_screen.dart';
-import './screens/trip_detail_screen.dart';
+import './screens/categories_screen.dart';
+import 'package:untitled/screens/tabs_screen.dart';
+import './screens/category_trips_screen.dart';
+import '../screens/trip_detail_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           // ignore: deprecated_member_use
-          accentColor: Colors.blue,
+          accentColor: Colors.amber,
           fontFamily: 'Kalam',
           textTheme: ThemeData.light().textTheme.copyWith(
               headline5: const TextStyle(
@@ -48,9 +49,10 @@ class MyApp extends StatelessWidget {
               ))),
       // home: categoriesScreen(),
       routes: {
-        '/': (ctx) => const categoriesScreen(), //kikhdem fhal home!!
-        CategoryTripsScreen.screenRoute: (ctx) => CategoryTripsScreen(categoryId, categoryTitle),
-        TripDetailScreen.screenRoute: (ctx) => TripDetailScreen()
+        '/': (ctx) => TabsScreen(), //kikhdem fhal home!!
+        CategoryTripsScreen.screenRoute: (ctx) =>
+            CategoryTripsScreen(categoryId, categoryTitle),
+            TripDetailScreen.screenRoute: (ctx) => const TripDetailScreen()
       },
     );
   }
