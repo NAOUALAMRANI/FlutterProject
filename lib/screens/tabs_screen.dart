@@ -45,7 +45,7 @@ import '../screens/categories_screen.dart';
 import './favorites_Screen.dart';
 
 class TabsScreen extends StatefulWidget {
-  // const ({ Key? key }) : super(key: key);
+  const TabsScreen({Key? key}) : super(key: key);
 
   @override
   TabsScreenState createState() => TabsScreenState();
@@ -78,9 +78,11 @@ class TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tourist guide'),
+        title: Text(_screens[_selectedScreenIndex]["Screen"].toString()),
       ),
-      body: _screens[_selectedScreenIndex],
+      drawer: Drawer(
+        child: Text('Checkout menu in the top bar'),),
+      body: _screens[_selectedScreenIndex]["Screen"] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectScreen,
         backgroundColor: Theme.of(context).primaryColor,
