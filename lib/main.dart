@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import './screens/filters_screen.dart';
 import './screens/categories_screen.dart';
-import 'package:untitled/screens/tabs_screen.dart';
+import './screens/tabs_screen.dart';
 import './screens/category_trips_screen.dart';
 import '../screens/trip_detail_screen.dart';
 
@@ -49,10 +50,11 @@ class MyApp extends StatelessWidget {
               ))),
       // home: categoriesScreen(),
       routes: {
-        '/': (ctx) => TabsScreen(), //kikhdem fhal home!!
+        '/': (ctx) => const TabsScreen(), //kikhdem fhal home!!
         CategoryTripsScreen.screenRoute: (ctx) =>
             CategoryTripsScreen(categoryId, categoryTitle),
-            TripDetailScreen.screenRoute: (ctx) => const TripDetailScreen()
+            TripDetailScreen.screenRoute: (ctx) => TripDetailScreen(),
+            FiltersScreen.screenRoute:(ctx)=> FiltersScreen(),
       },
     );
   }

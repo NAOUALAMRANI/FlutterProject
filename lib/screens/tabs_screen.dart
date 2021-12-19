@@ -41,6 +41,7 @@
 
 //video(16)
 import 'package:flutter/material.dart';
+import '../widgets/app_drawer.dart';
 import '../screens/categories_screen.dart';
 import './favorites_Screen.dart';
 
@@ -80,8 +81,7 @@ class TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(_screens[_selectedScreenIndex]["Screen"].toString()),
       ),
-      drawer: Drawer(
-        child: Text('Checkout menu in the top bar'),),
+      drawer: AppDrawer(),
       body: _screens[_selectedScreenIndex]["Screen"] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectScreen,
