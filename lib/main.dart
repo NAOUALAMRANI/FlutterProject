@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import './app_data.dart';
+import './models/trip.dart';
 import './screens/filters_screen.dart';
-import './screens/categories_screen.dart';
+//import './screens/categories_screen.dart';
 import './screens/tabs_screen.dart';
 import './screens/category_trips_screen.dart';
 import '../screens/trip_detail_screen.dart';
@@ -9,12 +11,35 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   get categoryId => null;
 
   get categoryTitle => null;
+
+  Map<String, bool> _filters = {
+    'summer': false,
+    'winter': false,
+    'family': false,
+  };
+  List<Trip> _availableTrips = Trips_data;
+  void _changeFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+
+      _availableTrips = Trips_data.where((trip) {
+        if (_filters['summer'] == true && trip.isInSummer != true) {
+          return false;
+        }
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +77,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (ctx) => const TabsScreen(), //kikhdem fhal home!!
         CategoryTripsScreen.screenRoute: (ctx) =>
-            CategoryTripsScreen(categoryId, categoryTitle),
-            TripDetailScreen.screenRoute: (ctx) => TripDetailScreen(),
-            FiltersScreen.screenRoute:(ctx)=> FiltersScreen(),
+            CategoryTripsScreen(_availableTrips),
+        TripDetailScreen.screenRoute: (ctx) => TripDetailScreen(),
+        FiltersScreen.screenRoute: (ctx) => FiltersScreen(_changeFilters),
       },
     );
   }

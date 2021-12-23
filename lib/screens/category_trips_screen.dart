@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/screens/categories_screen.dart';
 import '../models/trip.dart';
 import '../widgets/trip_item.dart';
 import '../app_data.dart';
 
 class CategoryTripsScreen extends StatefulWidget {
   static const screenRoute = '/category-trips';
-  CategoryTripsScreen(categoryId, categoryTitle);
+  //CategoryTripsScreen(categoryId, categoryTitle);
 
+  final List<Trip> availableTrips;
+  CategoryTripsScreen(this.availableTrips);
   @override
   State<CategoryTripsScreen> createState() => _CategoryTripsScreenState();
 }
@@ -16,7 +19,7 @@ class _CategoryTripsScreenState extends State<CategoryTripsScreen> {
   late List<Trip> displayTrips;
   @override
   void initState() {
-    //kade3ml mushkil ida kan 3ana deja un context 
+    //kade3ml mushkil ida kan 3ana deja un context
     super.initState();
   }
 
@@ -26,7 +29,7 @@ class _CategoryTripsScreenState extends State<CategoryTripsScreen> {
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final categoryId = routeArgument['id'];
     categoryTitle = routeArgument['title'].toString();
-    displayTrips = Trips_data.where((trip) {
+    displayTrips = widget.availableTrips.where((trip) {
       return trip.categories.contains(categoryId);
     }).toList();
     super.didChangeDependencies();
@@ -48,14 +51,14 @@ class _CategoryTripsScreenState extends State<CategoryTripsScreen> {
           itemBuilder: (ctx, index) {
             //return Text(filterdTrips[index].title); kant ghir n title
             return TripItem(
-                id: displayTrips[index].id,
-                title: displayTrips[index].title,
-                imageUrl: displayTrips[index].imageUrl,
-                duration: displayTrips[index].duration,
-                tripType: displayTrips[index].tripType,
-                season: displayTrips[index].season,
-                removeItem: _removeTrip,
-                );
+              id: displayTrips[index].id,
+              title: displayTrips[index].title,
+              imageUrl: displayTrips[index].imageUrl,
+              duration: displayTrips[index].duration,
+              tripType: displayTrips[index].tripType,
+              season: displayTrips[index].season,
+              removeItem: _removeTrip,
+            );
           },
           itemCount: displayTrips.length,
         )
