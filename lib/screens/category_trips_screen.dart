@@ -17,11 +17,11 @@ class CategoryTripsScreen extends StatefulWidget {
 class _CategoryTripsScreenState extends State<CategoryTripsScreen> {
   late String categoryTitle;
   late List<Trip> displayTrips;
-  @override
-  void initState() {
-    //kade3ml mushkil ida kan 3ana deja un context
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   //kade3ml mushkil ida kan 3ana deja un context
+  //   super.initState();
+  // }
 
   @override
   void didChangeDependencies() {

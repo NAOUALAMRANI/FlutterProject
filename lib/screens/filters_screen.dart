@@ -7,15 +7,25 @@ class FiltersScreen extends StatefulWidget {
   static const screenRoute = '/filter';
 
   final Function saveFilters;
-  FiltersScreen(this.saveFilters);
+  final Map<String, bool> currentFilters;
+  FiltersScreen(this.currentFilters, this.saveFilters);
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
 }
+
 class _FiltersScreenState extends State<FiltersScreen> {
-  var _isInSummer = false;
-  var _isInWinter = false;
-  var _isForFamily = false;
+  var _Summer = false;
+  var _Winter = false;
+  var _Family = false;
+
+  @override
+  initState() {
+    _Summer = widget.currentFilters['summer'];
+    _Winter = widget.currentFilters['winter'];
+    _Family = widget.currentFilters['family'];
+    super.initState();
+  }
 
   Widget buildSwitchListTile(String title, String subtitle, var currentValue,
       Function(bool) updateValue) {
@@ -25,6 +35,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         value: currentValue,
         onChanged: updateValue);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +44,14 @@ class _FiltersScreenState extends State<FiltersScreen> {
           actions: [
             IconButton(
               icon: Icon(Icons.save),
-              onPressed:(){widget.saveFilters();},
+              onPressed: () {
+                final selectedFilters = {
+                  'summer': _Summer,
+                  'winter': _Winter,
+                  'family': _Family,
+                };
+                widget.saveFilters(selectedFilters);
+              },
             )
           ],
         ),
@@ -46,23 +64,24 @@ class _FiltersScreenState extends State<FiltersScreen> {
             Expanded(
                 child: ListView(
               children: [
-                buildSwitchListTile('the Summer trips only',
-                    'Show only summer trips', _isInSummer, (newValue) {
+                buildSwitchListTile(
+                    'the Summer trips only', 'Show only summer trips', _Summer,
+                    (newValue) {
                   setState(() {
-                    _isInSummer = newValue;
-                  });
-                }),
-                buildSwitchListTile('the Winter trips only',
-                    'Show only Winter trips', _isInWinter, (newValue) {
-                  setState(() {
-                    _isInWinter = newValue;
+                    _Summer = newValue;
                   });
                 }),
                 buildSwitchListTile(
-                    'For Fmily', 'Show only family trips', _isForFamily,
+                    'the Winter trips only', 'Show only Winter trips', _Winter,
                     (newValue) {
                   setState(() {
-                    _isForFamily = newValue;
+                    _Winter = newValue;
+                  });
+                }),
+                buildSwitchListTile(
+                    'For Fmily', 'Show only family trips', _Family, (newValue) {
+                  setState(() {
+                    _Family = newValue;
                   });
                 })
               ],

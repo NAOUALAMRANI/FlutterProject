@@ -37,6 +37,13 @@ class _MyAppState extends State<MyApp> {
         if (_filters['summer'] == true && trip.isInSummer != true) {
           return false;
         }
+        if (_filters['winter'] == true && trip.isInWinter != true) {
+          return false;
+        }
+        if (_filters['family'] == true && trip.isForFamilies != true) {
+          return false;
+        }
+        return true;
       }).toList();
     });
   }
@@ -79,7 +86,7 @@ class _MyAppState extends State<MyApp> {
         CategoryTripsScreen.screenRoute: (ctx) =>
             CategoryTripsScreen(_availableTrips),
         TripDetailScreen.screenRoute: (ctx) => TripDetailScreen(),
-        FiltersScreen.screenRoute: (ctx) => FiltersScreen(_changeFilters),
+        FiltersScreen.screenRoute: (ctx) => FiltersScreen(_filters,_changeFilters),
       },
     );
   }
