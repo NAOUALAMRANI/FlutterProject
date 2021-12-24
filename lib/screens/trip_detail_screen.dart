@@ -1,12 +1,18 @@
 // ignore_for_file: dead_code
 
 import 'package:flutter/material.dart';
+import '../models/trip.dart';
 import '../app_data.dart';
 
 class TripDetailScreen extends StatelessWidget {
   static const screenRoute = '/trip-detail';
 
-  const TripDetailScreen({Key? key}) : super(key: key);
+  final Function manageFavorite;
+  final Function isFavorite;
+
+  TripDetailScreen(this.manageFavorite, this.isFavorite);
+
+  //const TripDetailScreen({Key? key}) : super(key: key);
 
   Widget buildSectionTitle(BuildContext context, String titleText) {
     return Container(
@@ -106,11 +112,16 @@ class TripDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: () {
-          Navigator.of(context).pop(tripId);
-        },
-      ),
+          child: //Icon(Icons.star),
+               Icon(
+                 isFavorite(tripId) ? Icons.star : Icons.star_border
+               ),
+          // onPressed: () {
+          //   Navigator.of(context).pop(tripId);
+          // },
+          onPressed: () =>{
+            manageFavorite(tripId)
+          }),
     );
   }
 }

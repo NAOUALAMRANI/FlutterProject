@@ -41,13 +41,15 @@
 
 //video(16)
 import 'package:flutter/material.dart';
+import '../models/trip.dart';
 import '../widgets/app_drawer.dart';
 import '../screens/categories_screen.dart';
 import './favorites_Screen.dart';
 
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({Key? key}) : super(key: key);
-
+  //const TabsScreen({Key? key}) : super(key: key);
+  final List<Trip> favoriteTrips;
+  TabsScreen(this.favoriteTrips);
   @override
   TabsScreenState createState() => TabsScreenState();
 }
@@ -63,18 +65,23 @@ class TabsScreenState extends State<TabsScreen> {
 
   int _selectedScreenIndex = 0;
 
-  //final List<Widget> _screens = [categoriesScreen(), FavoritesScreen()]; //tariqa 3adiya d list 
-  // object kate3tina acces n3emlo des differents values avec different type  
-  final List<Map<String, Object>>_screens = [
+  //final List<Widget> _screens = [categoriesScreen(), FavoritesScreen()]; //tariqa 3adiya d list
+  // object kate3tina acces n3emlo des differents values avec different type
+  late List<Map<String, Object>> _screens;
+
+  @override
+  void initState() {
+    _screens = [
     {
       'Screen': categoriesScreen(),
-       'Title':'Categories of trips',
+      'Title': 'Categories of trips',
     },
-    {
-      'Screen':FavoritesScreen(),
-      'Title': 'Favorite trips'
-    }
-    ];
+    {'Screen': FavoritesScreen(widget.favoriteTrips), 
+      'Title': 'Favorite trips'}
+  ];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +96,7 @@ class TabsScreenState extends State<TabsScreen> {
         // ignore: deprecated_member_use
         selectedItemColor: Theme.of(context).accentColor,
         unselectedItemColor: Colors.white,
-        currentIndex:_selectedScreenIndex ,// kadekhdem fhal hover 
+        currentIndex: _selectedScreenIndex, // kadekhdem fhal hover
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.dashboard), label: 'Categories'),

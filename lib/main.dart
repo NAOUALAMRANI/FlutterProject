@@ -29,6 +29,7 @@ class _MyAppState extends State<MyApp> {
     'family': false,
   };
   List<Trip> _availableTrips = Trips_data;
+  List<Trip> _favoriteTrips = [];
   void _changeFilters(Map<String, bool> filterData) {
     setState(() {
       _filters = filterData;
@@ -46,6 +47,26 @@ class _MyAppState extends State<MyApp> {
         return true;
       }).toList();
     });
+  }
+
+  void _manageFavorite(String tripId) {
+    final existingIndex =
+        _favoriteTrips.indexWhere((trip) => trip.id == tripId);
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoriteTrips.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favoriteTrips.add(
+          Trips_data.firstWhere((trip) => trip.id == tripId),
+        );
+      });
+    }
+  }
+
+  bool _isFavorite(String id) {
+    return _favoriteTrips.any((trip) => trip.id == id);
   }
 
   @override
@@ -82,11 +103,13 @@ class _MyAppState extends State<MyApp> {
               ))),
       // home: categoriesScreen(),
       routes: {
-        '/': (ctx) => const TabsScreen(), //kikhdem fhal home!!
+        '/': (ctx) => TabsScreen(_favoriteTrips), //kikhdem fhal home!!
         CategoryTripsScreen.screenRoute: (ctx) =>
             CategoryTripsScreen(_availableTrips),
-        TripDetailScreen.screenRoute: (ctx) => TripDetailScreen(),
-        FiltersScreen.screenRoute: (ctx) => FiltersScreen(_filters,_changeFilters),
+        TripDetailScreen.screenRoute: (ctx) =>
+            TripDetailScreen(_manageFavorite, _isFavorite ),
+        FiltersScreen.screenRoute: (ctx) =>
+            FiltersScreen(_filters, _changeFilters),
       },
     );
   }

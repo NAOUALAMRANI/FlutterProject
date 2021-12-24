@@ -20,12 +20,12 @@ class _FiltersScreenState extends State<FiltersScreen> {
   var _Family = false;
 
   @override
-  initState() {
-    _Summer = widget.currentFilters['summer'];
-    _Winter = widget.currentFilters['winter'];
-    _Family = widget.currentFilters['family'];
-    super.initState();
-  }
+  // initState() {
+  //   _Summer = widget.currentFilters['summer'];
+  //   _Winter = widget.currentFilters['winter'];
+  //   _Family = widget.currentFilters['family'];
+  //   super.initState();
+  // }
 
   Widget buildSwitchListTile(String title, String subtitle, var currentValue,
       Function(bool) updateValue) {

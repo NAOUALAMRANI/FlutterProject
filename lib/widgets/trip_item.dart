@@ -19,7 +19,7 @@ class TripItem extends StatelessWidget {
     required this.duration,
     required this.tripType,
     required this.season,
-    required this.removeItem,
+    //required this.removeItem,
   });
   String get seasonText {
     // if (season == Season.Winter) {
